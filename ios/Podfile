@@ -1,0 +1,49 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '11.0'
+
+source 'git@gitlab-ce.emas-poc.com:EMAS-iOS/emas-specs-thirdpart.git'
+source 'git@gitlab-ce.emas-poc.com:EMAS-iOS/emas-specs.git'
+
+target 'Runner' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Runner
+
+#        # --通用库
+    pod  'UserTrack',        '6.3.5.46-poc'
+    pod  'Reachability',     '3.2'
+    pod  'FMDB',             '2.7.2'
+    pod  'NetworkSDK',       '10.0.4.6'
+    pod  'tnet',             '10.3.0'
+    pod  'AliEMASConfigure',  '0.0.1.19'
+    pod  'AlicloudUTDID', '1.1.0.19'
+#    pod 'ZipArchive'
+#
+#    pod  'AliHAAdapter4poc',   '10.0.5.7'
+#    #pod 'AliHALogEngine', '10.0.5'?
+
+
+    pod 'EMASServiceManager'
+    pod 'EMASMiniAppContainer'
+
+    pod 'WindVane', '2.0.8-SNAPSHOT'   # 新增 新版本 WindVane
+#    pod 'WindVane', '2.0.0'
+    pod 'Windmill', '1.2.6.7' # 新增 Windmill 协议集合
+    pod 'RiverLogger'         # 新增
+    
+    pod 'TBJSONModel', '0.1.15.2-SNAPSHOT'  # 解决 TBJSONModel framework 问题
+
+#    # ZCache
+    pod 'ZCache', '10.0.10'
+
+    pod 'DynamicConfiguration', '10.0.4'
+    pod 'DynamicConfigurationAdaptor', '10.0.4'
+
+    pod 'ZipArchive', '~> 1.4.0'
+
+    # --网关(通用库-> 网关)
+    pod  'MtopSDK',          '10.1.7'
+    pod  'mtopext/MtopCore', '10.1.6'
+
+end

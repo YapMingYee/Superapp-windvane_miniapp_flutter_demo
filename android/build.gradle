@@ -1,0 +1,38 @@
+buildscript {
+    repositories {
+        maven{
+            url 'https://dl.google.com/dl/android/maven2'
+        }
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.4.1'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven {
+            url 'http://nexus-ce.emas-poc.com/repository/maven-public/'
+            credentials {
+                username = 'CenterExperience'
+                password = '77kkyy99'
+            }
+            allowInsecureProtocol = true
+        }
+    }
+}
+
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+    project.evaluationDependsOn(':app')
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}

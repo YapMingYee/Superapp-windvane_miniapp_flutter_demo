@@ -1,0 +1,186 @@
+PODS:
+  - AliAPMInterface (1.0.1.12):
+    - AliEMASConfigure (>= 0.0.1.19)
+    - NetworkSDK
+    - TBAccsSDK
+  - AlicloudUTDID (1.1.0.19)
+  - AliCrashReporterInterface (0.0.5)
+  - AliEMASConfigure (0.0.1.19)
+  - AliNetStateInterface (0.0.1.2)
+  - AliRemoteDebugInterface (0.0.1.7)
+  - AliUserTrackInterface (0.0.1.1):
+    - AliEMASConfigure (>= 0.0.1.19)
+    - NetworkSDK
+    - TBAccsSDK
+  - BizErrorReporter4iOS (10.0.3):
+    - JDYThreadTrace (>= 1.0.0.12)
+    - TBRest
+  - DynamicConfiguration (10.0.4)
+  - DynamicConfigurationAdaptor (10.0.4):
+    - DynamicConfiguration
+    - mtopext (>= 10.0.0)
+    - MtopSDK (>= 10.0.0)
+  - EMASMiniAppContainer (0.1.11)
+  - EMASServiceManager (0.1.0)
+  - FMDB (2.7.2):
+    - FMDB/standard (= 2.7.2)
+  - FMDB/standard (2.7.2)
+  - JDYThreadTrace (10.0.3)
+  - mtopext (10.1.6):
+    - mtopext/MtopCore (= 10.1.6)
+  - mtopext/MtopCore (10.1.6):
+    - MtopSDK
+    - NetworkSDK/AliReachability (>= 6.2.1.12)
+  - MtopSDK (10.1.7)
+  - NetworkSDK (10.0.4.6):
+    - NetworkSDK/AliReachability (= 10.0.4.6)
+    - NetworkSDK/NetworkCore (= 10.0.4.6)
+    - NetworkSDK/NetworkPolicy (= 10.0.4.6)
+  - NetworkSDK/AliReachability (10.0.4.6):
+    - AliNetStateInterface
+  - NetworkSDK/NetworkCore (10.0.4.6):
+    - AliEMASConfigure
+    - NetworkSDK/AliReachability
+    - tnet (>= 10.1.0)
+  - NetworkSDK/NetworkPolicy (10.0.4.6):
+    - NetworkSDK/NetworkCore
+    - tnet (>= 10.1.0)
+  - Reachability (3.2)
+  - RiverLogger (1.0.6):
+    - AliRemoteDebugInterface
+  - TBAccsSDK (10.0.13):
+    - AliEMASConfigure (>= 0.0.1.19)
+    - NetworkSDK (>= 10.0.4.1)
+  - TBJSONModel (0.1.15.2-SNAPSHOT)
+  - TBRest (10.0.3)
+  - tnet (10.3.0)
+  - UserTrack (6.3.5.46-poc):
+    - AlicloudUTDID
+    - TBRest
+  - Windmill (1.2.6.7):
+    - Windmill/API (= 1.2.6.7)
+    - Windmill/AppContainer (= 1.2.6.7)
+    - Windmill/Bridge (= 1.2.6.7)
+    - Windmill/Monitor (= 1.2.6.7)
+    - Windmill/TRiverKit (= 1.2.6.7)
+    - Windmill/Weaver (= 1.2.6.7)
+    - Windmill/WebView (= 1.2.6.7)
+    - Windmill/Windmill (= 1.2.6.7)
+    - Windmill/ZCache (= 1.2.6.7)
+  - Windmill/API (1.2.6.7):
+    - NetworkSDK/AliReachability
+    - Windmill/Windmill
+  - Windmill/AppContainer (1.2.6.7):
+    - TBJSONModel
+    - Windmill/Windmill
+  - Windmill/Bridge (1.2.6.7):
+    - Windmill/Weaver
+  - Windmill/Monitor (1.2.6.7):
+    - AliAPMInterface
+    - AliCrashReporterInterface
+    - AliRemoteDebugInterface
+    - AliUserTrackInterface
+    - BizErrorReporter4iOS
+    - Windmill/Weaver
+  - Windmill/TRiverKit (1.2.6.7):
+    - Windmill/Weaver
+  - Windmill/Weaver (1.2.6.7)
+  - Windmill/WebView (1.2.6.7):
+    - Windmill/Windmill
+  - Windmill/Windmill (1.2.6.7):
+    - Windmill/Bridge
+    - Windmill/Weaver
+  - Windmill/ZCache (1.2.6.7):
+    - Windmill/Windmill
+    - ZCache (>= 10.0.6.10)
+  - WindVane (2.0.8-SNAPSHOT):
+    - ZCache
+  - ZCache (10.0.10)
+  - ZipArchive (1.4.0)
+
+DEPENDENCIES:
+  - AlicloudUTDID (= 1.1.0.19)
+  - AliEMASConfigure (= 0.0.1.19)
+  - DynamicConfiguration (= 10.0.4)
+  - DynamicConfigurationAdaptor (= 10.0.4)
+  - EMASMiniAppContainer
+  - EMASServiceManager
+  - FMDB (= 2.7.2)
+  - mtopext/MtopCore (= 10.1.6)
+  - MtopSDK (= 10.1.7)
+  - NetworkSDK (= 10.0.4.6)
+  - Reachability (= 3.2)
+  - RiverLogger
+  - TBJSONModel (= 0.1.15.2-SNAPSHOT)
+  - tnet (= 10.3.0)
+  - UserTrack (= 6.3.5.46-poc)
+  - Windmill (= 1.2.6.7)
+  - WindVane (= 2.0.8-SNAPSHOT)
+  - ZCache (= 10.0.10)
+  - ZipArchive (~> 1.4.0)
+
+SPEC REPOS:
+  "git@gitlab-ce.emas-poc.com:EMAS-iOS/emas-specs-thirdpart.git":
+    - AlicloudUTDID
+    - FMDB
+    - Reachability
+    - ZipArchive
+  "git@gitlab-ce.emas-poc.com:EMAS-iOS/emas-specs.git":
+    - AliAPMInterface
+    - AliCrashReporterInterface
+    - AliEMASConfigure
+    - AliNetStateInterface
+    - AliRemoteDebugInterface
+    - AliUserTrackInterface
+    - BizErrorReporter4iOS
+    - DynamicConfiguration
+    - DynamicConfigurationAdaptor
+    - EMASMiniAppContainer
+    - EMASServiceManager
+    - JDYThreadTrace
+    - mtopext
+    - MtopSDK
+    - NetworkSDK
+    - RiverLogger
+    - TBAccsSDK
+    - TBJSONModel
+    - TBRest
+    - tnet
+    - UserTrack
+    - Windmill
+    - WindVane
+    - ZCache
+
+SPEC CHECKSUMS:
+  AliAPMInterface: 66def8097d7fcafac80149fafdf677b66c80a6f7
+  AlicloudUTDID: 0fc81df4dcf3885da1b8129c698424db09a7c985
+  AliCrashReporterInterface: 2e5a90a2f84de95d9030c03405376436cced23ba
+  AliEMASConfigure: 565ced5d87f6842b1cca0863c0ed3b72cb44c7e2
+  AliNetStateInterface: 3aac3bc8ffa23480629abe404848cacaac8c3d3c
+  AliRemoteDebugInterface: 0ac29d48daf83d566153ed87698f6bc21c006f49
+  AliUserTrackInterface: bd63e14115b98697624385af0aa96db3c18fecbb
+  BizErrorReporter4iOS: 30b5610aae00f17c451e197085025f7137da48ca
+  DynamicConfiguration: 7c308af82e1d90a8db1411f8422314ae922e7546
+  DynamicConfigurationAdaptor: 72da2e9ea6029132f39fc08b46f4ac3c0fc0fde5
+  EMASMiniAppContainer: ef6c3ac4d93a19d95332397c5d88f4c8bef1e80d
+  EMASServiceManager: 1ec40c3fd6d37ce38e53f21802e8555f5dc9f92d
+  FMDB: 59c8d22e133e9b887d347fb42a336a453a19909c
+  JDYThreadTrace: 0125dee69dd735c99bcee047deb9666880a1600c
+  mtopext: e93c7390fbfb36b2c8e2cf5800d024dbbf5eba89
+  MtopSDK: 1ba535b42c8bdc0c4d7b016a8cf8d2250ae4b7b9
+  NetworkSDK: a50fe6926a4cf45f863db213d325cd8ed08ac19e
+  Reachability: 8d8613b51167cc12561754ba3cd7f24edf40e652
+  RiverLogger: 7b8fb61b747fb84c40998b918fefd779c62df506
+  TBAccsSDK: ce6e2033bab533e0b71bd684d9e4c0eae466d0bd
+  TBJSONModel: eee0118eaf4dd54172f1e2057f57361475cf3172
+  TBRest: 16bf96f528492869a4bf6126aea783d5fb7ccd38
+  tnet: aa4825cbefa1e0d6346417662ae0e3aef436d28b
+  UserTrack: 45dd39c2632df37d803aeb47f35eac165b282492
+  Windmill: b906387cfb3981a2ca16a66fe00290f454f4274d
+  WindVane: 14e8ed9b07083f25a5ff257efc91e1b0b7c8b3a4
+  ZCache: 8337ce32bd7f9a4b69e9246ed2a2fe6a284ccba9
+  ZipArchive: ad9013928efd53b1f8255208de8a26bd8b2bdc32
+
+PODFILE CHECKSUM: 1595cac71b43ecf09bb3ff131f253be557e2e9ad
+
+COCOAPODS: 1.11.3
