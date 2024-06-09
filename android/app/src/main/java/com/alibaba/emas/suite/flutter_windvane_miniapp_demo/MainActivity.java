@@ -42,14 +42,19 @@ public class MainActivity extends FlutterActivity {
         new MethodChannel(flutterEngine.getDartExecutor(), WINDVANE_MINIAPP).setMethodCallHandler(new MethodChannel.MethodCallHandler() {
             @Override
             public void onMethodCall(@NonNull MethodCall call, @NonNull MethodChannel.Result result) {
-                if (call.method.equals("loadMiniApp")) {
-                    loadMiniApp(call, result);
-                } else if (call.method.equals("initWindVaneMiniApp")) {
-                    initWindVaneMiniApp(call, result);
-                } else if (call.method.equals("getMiniApps")) {
-                    getMiniApps(call, result);
-                } else {
-                    result.notImplemented();
+                switch (call.method) {
+                    case "loadMiniApp":
+                        loadMiniApp(call, result);
+                        break;
+                    case "initWindVaneMiniApp":
+                        initWindVaneMiniApp(call, result);
+                        break;
+                    case "getMiniApps":
+                        getMiniApps(call, result);
+                        break;
+                    default:
+                        result.notImplemented();
+                        break;
                 }
             }
         });
@@ -57,14 +62,13 @@ public class MainActivity extends FlutterActivity {
 
     private void loadMiniApp(@NonNull MethodCall call, @NonNull MethodChannel.Result result) {
         String appId = call.argument("appId");
-
         if (!TextUtils.isEmpty(appId)) {
             IMiniAppService appService = ServiceManager.getInstance().getService(IMiniAppService.class.getName());
             if (appService != null) {
                 appService.loadMiniApp(MainActivity.this, appId, new OnLoadMiniAppListener() {
                     @Override
                     public void onLoadMiniApp() {
-
+                        // Optional: Handle on load mini app
                     }
 
                     @Override
@@ -74,7 +78,7 @@ public class MainActivity extends FlutterActivity {
                             json.put("success", true);
                             result.success(json.toString());
                         } catch (JSONException e) {
-                            result.success(json.toString());
+                            result.error("JSON_ERROR", "Failed to create JSON response", e);
                         }
                     }
 
@@ -87,38 +91,22 @@ public class MainActivity extends FlutterActivity {
                             json.put("msg", msg);
                             result.success(json.toString());
                         } catch (JSONException e) {
-                            result.success(json.toString());
+                            result.error("JSON_ERROR", "Failed to create JSON response", e);
                         }
                     }
                 });
             } else {
-                JSONObject json = new JSONObject();
-                try {
-                    json.put("success", false);
-                    json.put("errorCode", 11);
-                    json.put("msg", "you need add service manger sdk");
-                    result.success(json.toString());
-                } catch (JSONException e) {
-                    result.success(json.toString());
-                }
+                handleServiceNotAvailable(result);
             }
         } else {
-            JSONObject json = new JSONObject();
-            try {
-                json.put("success", false);
-                json.put("errorCode", MiniAppConstants.ERROR_CODE_APP_ID_EMPTY);
-                json.put("msg", "appId is empty");
-                result.success(json.toString());
-            } catch (JSONException e) {
-                result.success(json.toString());
-            }
+            handleEmptyAppId(result);
         }
     }
 
     private void initWindVaneMiniApp(@NonNull MethodCall call, @NonNull MethodChannel.Result result) {
         EmasMiniApp.getInstance()
                 .setOpenLog(false)
-                .setTtid("aaa") //mock data
+                .setTtid("1611799373113508524032") 
                 .setAppVersion("1.0.0")
                 .setZcacheEnable(true)
                 .init(MainActivity.this.getApplication());
@@ -128,9 +116,9 @@ public class MainActivity extends FlutterActivity {
         JSONObject json = new JSONObject();
         try {
             json.put("success", true);
-            result.success(json);
-        } catch (JSONException e) {
             result.success(json.toString());
+        } catch (JSONException e) {
+            result.error("JSON_ERROR", "Failed to create JSON response", e);
         }
     }
 
@@ -148,15 +136,13 @@ public class MainActivity extends FlutterActivity {
                             miniApp.put("appName", miniAppInfo.appName);
                             miniApp.put("appId", miniAppInfo.appId);
                             miniApp.put("appIcon", miniAppInfo.appIcon);
-
                             array.put(miniApp);
                         }
-
                         json.put("success", true);
                         json.put("miniApps", array);
                         result.success(json.toString());
                     } catch (JSONException e) {
-                        result.success(json.toString());
+                        result.error("JSON_ERROR", "Failed to create JSON response", e);
                     }
                 }
 
@@ -169,37 +155,55 @@ public class MainActivity extends FlutterActivity {
                         json.put("msg", msg);
                         result.success(json.toString());
                     } catch (JSONException e) {
-                        result.success(json.toString());
+                        result.error("JSON_ERROR", "Failed to create JSON response", e);
                     }
                 }
             });
         } else {
-            JSONObject json = new JSONObject();
-            try {
-                json.put("success", false);
-                json.put("errorCode", 11);
-                json.put("msg", "you need add service manger sdk");
-                result.success(json.toString());
-            } catch (JSONException e) {
-                result.success(json.toString());
-            }
+            handleServiceNotAvailable(result);
         }
     }
 
     private void initMtop(Context context) {
-        final String appKey = "20000002";   //mock appkey
-        final String appSecret = "e7715dd9e24a1fd3117865dfcd4b6099"; //mock appsecret
+        if (context == null) {
+            Log.e("MainActivity", "Context is null, cannot initialize Mtop");
+            return;
+        }
+        final String appKey = "hcuIkOeG"; // Replace with actual appKey
+        final String appSecret = "5QFVilXh3BzRv5duymgYLQ=="; // Replace with actual appSecret
 
-        String domain = "aserver-intl.emas-poc.com";    //mock mtop domain
+        String domain = "emas-publish-intl.emas-poc.com"; // Replace with actual domain
+        // String domain = "aserver-intl.emas-poc.com";    //mock mtop domain
 
         SwitchConfig.getInstance().setGlobalSpdySwitchOpen(false);
 
         MtopSetting.setEnableProperty(Mtop.Id.INNER, MtopEnablePropertyType.ENABLE_NEW_DEVICE_ID, false);
-
         MtopSetting.setMtopDomain(Mtop.Id.INNER, domain, domain, domain);
-
         MtopSetting.setISignImpl(Mtop.Id.INNER, new LocalInnerSignImpl(appKey, appSecret));
-
         MtopSetting.setAppVersion(Mtop.Id.INNER, AppUtils.getAppVersion(context));
+    }
+
+    private void handleServiceNotAvailable(MethodChannel.Result result) {
+        JSONObject json = new JSONObject();
+        try {
+            json.put("success", false);
+            json.put("errorCode", 11);
+            json.put("msg", "Service manager SDK not available");
+            result.success(json.toString());
+        } catch (JSONException e) {
+            result.error("JSON_ERROR", "Failed to create JSON response", e);
+        }
+    }
+
+    private void handleEmptyAppId(MethodChannel.Result result) {
+        JSONObject json = new JSONObject();
+        try {
+            json.put("success", false);
+            json.put("errorCode", MiniAppConstants.ERROR_CODE_APP_ID_EMPTY);
+            json.put("msg", "appId is empty");
+            result.success(json.toString());
+        } catch (JSONException e) {
+            result.error("JSON_ERROR", "Failed to create JSON response", e);
+        }
     }
 }
